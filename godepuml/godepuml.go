@@ -34,8 +34,9 @@ func (l1 PackageList) merge(l2 PackageList) {
 }
 
 type PackageScanner struct {
-	Root       string
-	ModuleName string
+	Root         string
+	ModuleName   string
+	ExcludedDirs map[string]struct{}
 }
 
 func (s *PackageScanner) Scan(path string) (PackageList, error) {
@@ -52,6 +53,10 @@ func (s *PackageScanner) Scan(path string) (PackageList, error) {
 
 	for _, entry := range entries {
 		entryPath := filepath.Join(path, entry.Name())
+
+		if _, found := s.ExcludedDirs[entryPath]; found {
+			continue
+		}
 
 		if entry.IsDir() {
 			pkgs, err := s.Scan(entryPath)

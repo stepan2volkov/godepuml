@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/stepan2volkov/godepuml/godepuml"
 	"golang.org/x/mod/modfile"
@@ -17,6 +18,11 @@ var (
 )
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage of %s -o <output-file> -p <path-to-project> [excluded-1 ... excluded-N]:\n", os.Args[0])
+		flag.PrintDefaults()
+		fmt.Fprintf(os.Stderr, "This is not helpful.\n")
+	}
 	flag.Parse()
 
 	moduleName := getModuleName(*path)
@@ -27,9 +33,16 @@ func main() {
 		os.Exit(1)
 	}
 
+	excludedDirs := make(map[string]struct{}, len(flag.Args()))
+
+	for _, arg := range flag.Args() {
+		excludedDirs[strings.TrimRight(arg, "/")] = struct{}{}
+	}
+
 	scanner := godepuml.PackageScanner{
-		Root:       absPath,
-		ModuleName: moduleName,
+		Root:         absPath,
+		ModuleName:   moduleName,
+		ExcludedDirs: excludedDirs,
 	}
 
 	pkgList, err := scanner.Scan(absPath)
