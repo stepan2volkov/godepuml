@@ -38,6 +38,7 @@ func main() {
 	for _, arg := range flag.Args() {
 		excludedDirs[strings.TrimRight(arg, "/")] = struct{}{}
 	}
+	log.Println("Excluded: ", os.Args)
 
 	scanner := godepuml.PackageScanner{
 		Root:         absPath,

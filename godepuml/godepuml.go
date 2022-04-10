@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go/parser"
 	"go/token"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -55,6 +56,7 @@ func (s *PackageScanner) Scan(path string) (PackageList, error) {
 		entryPath := filepath.Join(path, entry.Name())
 
 		if _, found := s.ExcludedDirs[entryPath]; found {
+			log.Println("Excluded dir:", entryPath)
 			continue
 		}
 
