@@ -38,3 +38,7 @@ godepuml -p <path-to-project> -o <output-puml-file> [excluded-1 ... excluded-N]
 Для генерации изображения можно установить `puml` локально, или воспользоваться [сервером](http://www.plantuml.com/plantuml/uml).
 
 ![csvdb logo](/images/csvdb.png)
+
+Если исключить директорию cmd, то получим следующее:
+
+![csvdb logo](/images/csvdb_without_cmd.png)
