@@ -36,9 +36,17 @@ func main() {
 	excludedDirs := make(map[string]struct{}, len(flag.Args()))
 
 	for _, arg := range flag.Args() {
-		excludedDirs[strings.TrimRight(arg, "/")] = struct{}{}
+		if arg == "-p" || arg == "-o" || arg == *path || arg == *outputPath {
+			continue
+		}
+		exludedPath, err := filepath.Abs(arg)
+		if err != nil {
+			fmt.Println("path is invalid:", err)
+			os.Exit(1)
+		}
+		excludedDirs[strings.TrimRight(exludedPath, "/")] = struct{}{}
 	}
-	log.Println("Excluded: ", os.Args)
+	log.Println("Excluded: ", excludedDirs)
 
 	scanner := godepuml.PackageScanner{
 		Root:         absPath,
