@@ -5,7 +5,7 @@
 ## Использование
 
 ```bash
-godepuml -p <path-to-project> -o <output-puml-file>
+godepuml -p <path-to-project> -o <output-puml-file> [exlude-1 ... exclud-N]
 ```
 
 ## Пример
