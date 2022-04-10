@@ -5,8 +5,10 @@
 ## Использование
 
 ```bash
-godepuml -p <path-to-project> -o <output-puml-file> [exlude-1 ... exclud-N]
+godepuml -p <path-to-project> -o <output-puml-file> [excluded-1 ... excluded-N]
 ```
+
+Исключить директории может быть удобным, чтобы не строить зависимости для сгенерированных пакетов или папки `cmd`.
 
 ## Пример
 
@@ -33,6 +35,6 @@ godepuml -p <path-to-project> -o <output-puml-file> [exlude-1 ... exclud-N]
 @enduml
 ```
 
-Для генерации изображения можно установить puml локально, или воспользоваться [сервером](http://www.plantuml.com/plantuml/uml).
+Для генерации изображения можно установить `puml` локально, или воспользоваться [сервером](http://www.plantuml.com/plantuml/uml).
 
 ![csvdb logo](/images/csvdb.png)
