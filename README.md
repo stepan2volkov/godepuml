@@ -10,7 +10,7 @@ godepuml -p <path-to-project> -o <output-puml-file>
 
 ## Пример
 
-Для проекта [csvdb]() будет сгенерирован файл со следующим содержанием:
+Для проекта [csvdb](https://github.com/stepan2volkov/csvdb) будет сгенерирован файл со следующим содержанием:
 ```puml
 @startuml 'github.com/stepan2volkov/csvdb'
 
